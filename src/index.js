@@ -5,7 +5,6 @@ const https = require('https');
 const app = express();
 const connect = require('./connection.js');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

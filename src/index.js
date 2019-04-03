@@ -3,13 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
 const app = express();
-const connect = require('./connection.js');
+var connection = require("./connection.js")
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 let data = '';
-let key = `yourkey`;
+let key = `c724a31a3a2645a9b108f081c540143b`;
 let address = `brasilia`
 https.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`, (resp) => {
   resp.on('data', (chunk) => {
@@ -19,7 +20,7 @@ https.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`
   resp.on('end', () => {
     console.log(JSON.parse(data).explanation);
   });
-  
+
 }).on("error", (err) => {
   console.log("Error: " + err.message);
 });
@@ -28,6 +29,9 @@ https.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`
 app.get('/', (req, res) => {
 
   pdata = JSON.parse(data);
-  res.json(pdata.results[1].geometry) ;
+  res.json(pdata.results[1].geometry);
 });
+
+connection.connect();
+
 app.listen(3001);

@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
 const app = express();
+const connect = require('./connection.js');
 
 
 app.use(bodyParser.json());
@@ -12,13 +13,10 @@ let data = '';
 let key = `yourkey`;
 let address = `brasilia`
 https.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`, (resp) => {
-  
-  // A chunk of data has been recieved.
   resp.on('data', (chunk) => {
     data += chunk;
   });
-  
-  // The whole response has been received. Print out the result.
+
   resp.on('end', () => {
     console.log(JSON.parse(data).explanation);
   });

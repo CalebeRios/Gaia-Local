@@ -2,23 +2,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
+const connect = require("./connection.js");
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-const options = {
-  autoIndex: false,
-  reconnectTries: 30,
-  reconnectInterval: 500,
-  poolSize: 10,
-  bufferMaxEntries: 0
-}
-mongoose.connect("mongodb://mongo:27017/test", options).then(() => {
-  console.log('MongoDB is connected')
-}).catch(err => {
-  console.log('MongoDB connection unsuccessful.')
-})
+connect.connect();
 
 const Schema = mongoose.Schema;
 const locationSchema = new Schema({
@@ -39,18 +28,22 @@ https.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`
   });
 
   app.get('/', (req, res) => {
-    pdata = JSON.parse(data);
+    let pdata = JSON.parse(data);
     res.json(pdata.results[1].geometry);
-    console.log('\n\n\n\n\n')
-    console.log(pdata.results[1].geometry.lat);
-    console.log(pdata.results[1].geometry.lng);
 
     const NewLocation = Location({
-      Lat: pdata.results[1].geomtetry.lat,
-      Lng: pdata.results[1].geomtetry.lng
+      Lat: pdata.results[1].geometry.lat,
+      Lng: pdata.results[1].geometry.lng,
+      useMongoClient: true
     });
 
-    NewLocation.save();
+    NewLocation.save(function (err) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log("saved");
+    })
+
   });
 });
 app.listen(3001);

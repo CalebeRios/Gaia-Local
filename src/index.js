@@ -12,3 +12,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3001);
+
+module.exports = app;

@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
       lat: value.latitude,
       lng: value.longitude
      })
+  }).catch((err) => {
+    console.log('Catch: ' + err)
   })
 
 });

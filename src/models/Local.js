@@ -27,7 +27,7 @@ module.exports = class Local {
     }
 
     requestCoords(nome) {
-        let key = `c724a31a3a2645a9b108f081c540143b`;
+        let key = `0be76b3fccbe4f768c99643d9f603e84`;
 
         let data = '';
         let pData;
@@ -38,6 +38,7 @@ module.exports = class Local {
                 });
                 resp.on('end', () => {
                     pData = JSON.parse(data);
+                    console.log(pData)
                     //setLatitude(pData.results[1].geometry.lat);
                     //console.log("class lat: " + this.latitude)
                    // this.longitude = pData.results[1].geometry.lng;
@@ -46,8 +47,9 @@ module.exports = class Local {
                 });
             }).on("error", (err) => {
                 console.log("Error: " + err.message);
+                reject('fuckshit')
             });
-        })
+        });
 
     }
 

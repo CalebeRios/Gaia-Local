@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/wendybot/Wendy-Local.svg?branch=dev)](https://travis-ci.org/wendybot/Wendy-Local)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4d1a87b0429c1ba7d3a4/maintainability)](https://codeclimate.com/github/wendybot/Wendy-Local/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4d1a87b0429c1ba7d3a4/test_coverage)](https://codeclimate.com/github/wendybot/Wendy-Local/test_coverage)
+
 # Wendy-Local
 
 ## Objetivo

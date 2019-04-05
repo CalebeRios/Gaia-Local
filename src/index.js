@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const controller = require('./controller.js')
+const controller = require('./controllers/controller.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-let input = 'brasilia'
 
 app.get('/', (req, res) => {
+  let input = 'brasilia'
 
   controller.makeLocal(input).then(function (value) {
     res.json({ 
@@ -21,3 +21,4 @@ app.get('/', (req, res) => {
 
 app.listen(3001);
 
+module.exports = app;

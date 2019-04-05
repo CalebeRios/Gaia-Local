@@ -9,8 +9,8 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('test', () => {
-  it('get', (done) => {
+describe('IndexTest', () => {
+  it('getThruLocal', (done) => {
     chai.request(app).get('/').end((err, res) => {
       res.should.have.status(200);
       done();

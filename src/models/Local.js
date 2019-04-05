@@ -1,20 +1,18 @@
 const https = require('https');
-const connect = require("./connection.js");
-const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
-        const locationSchema = new Schema({
-            Lat: String,
-            Lng: String
-        });
+// const Schema = mongoose.Schema;
+//         const locationSchema = new Schema({
+//             Lat: String,
+//             Lng: String
+//         });
 
-        const Location = mongoose.model('Location', locationSchema);
+//         const Location = mongoose.model('Location', locationSchema);
 
-        const NewLocation = Location({
-            Lat: this.latitude,
-            Lng: this.longitude,
-            useMongoClient: true
-          });
+//         const NewLocation = Location({
+//             Lat: this.latitude,
+//             Lng: this.longitude,
+//             useMongoClient: true
+//           });
 
 module.exports = class Local {
     constructor(nome) {
@@ -23,6 +21,9 @@ module.exports = class Local {
     }
     setLatitude(latitude) {
         this.latitude = latitude
+    }
+    setLongitude(longitude) {
+        this.longitude = longitude;
     }
 
     requestCoords(nome) {

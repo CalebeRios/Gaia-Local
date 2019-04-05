@@ -1,16 +1,16 @@
-const Local = require('./Local.js')
+const Local = require('../models/Local.js')
 
 module.exports = {
 
     makeLocal: async function (input) {
         return new Promise(function (resolve, reject) {
-            input = 'basilia';
+            //input = 'basilia';
             let local = new Local(input);
-            console.log(local.nome)
+            //console.log(local.nome)
             local.requestCoords(local.nome).then(function (value) {
                 local.latitude = value.results[1].geometry.lat;
                 local.longitude = value.results[1].geometry.lng;
-                console.log(local.latitude);
+                //console.log(local.latitude);
                 resolve(local);
             });
         })

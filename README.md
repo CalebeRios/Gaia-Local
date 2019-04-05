@@ -10,6 +10,10 @@ Primeiro tem que instalar o docker e o docker compose, em seguida rode o projeto
 
 ```$ docker-compose up --build```
 
+Para rodar a folha de estilo, utilize este comando:
+
+```$ docker-compose run app /bin/sh -c "cd /app; npm i; npm run lint"```
+
 ### Endpoints
 
 Aqui se encontra todas as endpoints desse serviço.

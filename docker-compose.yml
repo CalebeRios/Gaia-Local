@@ -4,6 +4,8 @@ services:
   app:
     image: caleberios/wendy_node:latest
     restart: always
+    environment:
+      - API_KEY=${API_KEY}
     volumes:
       - .:/app
       - /app/node_modules

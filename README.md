@@ -5,7 +5,7 @@
 # Wendy-Local
 
 ## Objetivo
-Esse serviço é responsável por pegar a longitude e a latitude a partir do nome de um local através da API do [Google Maps API](https://developers.google.com/maps/documentation/?hl=pt-br).
+Esse serviço é responsável por pegar a longitude e a latitude a partir do name de um local através da API do [Google Maps API](https://developers.google.com/maps/documentation/?hl=pt-br).
 
 ## Como usar
 

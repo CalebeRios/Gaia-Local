@@ -1,26 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const app = express();
-const controller = require('./server/controllers/controller.js')
+const controller = require('./server/controllers/controller.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-  let input = 'brasilia'
+  const input = 'brasilia';
 
-  controller.makeLocal(input).then(function (value) {
-    res.json({ 
+  controller.makeLocal(input).then((value) => {
+    res.json({
       lat: value.latitude,
-      lng: value.longitude
-     })
+      lng: value.longitude,
+    });
   }).catch((err) => {
-    console.log('Catch: ' + err)
-  })
-
+    res.send(err);
+  });
 });
-
 app.listen(3001);
-
 module.exports = app;

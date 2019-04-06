@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const Local = require('../models/Local.js');
+const Local = require('../server/models/Local.js');
 
 describe('criarLocal', () => {
     it('Criar Local', () => {

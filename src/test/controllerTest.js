@@ -1,4 +1,4 @@
-const controller = require('../controllers/controller.js');
+const controller = require('../server/controllers/controller.js');
 const assert = require('chai').assert;
 
 describe('controllerTest', () => {

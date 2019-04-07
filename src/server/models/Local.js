@@ -28,8 +28,8 @@ module.exports = class Local {
           body = JSON.parse(data);
           resolve(body);
         });
-      }).on("error", (err) => {
-        reject('error');
+      }).on('error', (err) => {
+        reject(err);
       });
     });
   }

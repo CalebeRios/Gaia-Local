@@ -1,4 +1,10 @@
-const assert = require('chai').assert;
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
+const chai = require('chai');
+
+const assert = chai.assert();
 const controller = require('../server/controllers/controller.js');
 
 

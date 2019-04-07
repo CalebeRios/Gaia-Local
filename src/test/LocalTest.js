@@ -1,8 +1,14 @@
-const assert = require('chai').assert;
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
+const chai = require('chai');
+
+const assert = chai.assert();
 const Local = require('../server/models/Local.js');
 
-describe('criarLocal', () => {
-  it('Criar Local', () => {
+describe('createLocation', () => {
+  it('Create Location', () => {
     const newLocal = new Local('name');
     assert.equal(newLocal.name, 'name');
   });

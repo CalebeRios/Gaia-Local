@@ -4,7 +4,7 @@
 
 const chai = require('chai');
 
-const assert = chai.assert();
+const should = chai.should();
 const controller = require('../server/controllers/controller.js');
 
 
@@ -13,7 +13,7 @@ describe('controllerTest', () => {
     const name = controller.makeLocal('name');
 
     name.then((value) => {
-      assert.equal(value.name, 'name');
+      should.equal(value.name, 'name');
       done();
     });
   });

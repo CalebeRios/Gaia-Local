@@ -4,13 +4,13 @@
 
 const chai = require('chai');
 
-const assert = chai.assert();
+const should = chai.should();
 const Local = require('../server/models/Local.js');
 
 describe('createLocation', () => {
   it('Create Location', () => {
     const newLocal = new Local('name');
-    assert.equal(newLocal.name, 'name');
+    should.equal(newLocal.name, 'name');
   });
 });
 
@@ -18,7 +18,7 @@ describe('setLatitude', () => {
   it('set latitude', () => {
     const newLocal = new Local();
     newLocal.setLatitude('lat');
-    assert.equal(newLocal.latitude, 'lat');
+    should.equal(newLocal.latitude, 'lat');
   });
 });
 
@@ -26,6 +26,6 @@ describe('setLongitude', () => {
   it('set longitude', () => {
     const newLocal = new Local();
     newLocal.setLongitude('lng');
-    assert.equal(newLocal.longitude, 'lng');
+    should.equal(newLocal.longitude, 'lng');
   });
 });

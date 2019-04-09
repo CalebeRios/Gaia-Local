@@ -5,12 +5,12 @@
 const chai = require('chai');
 
 const should = chai.should();
-const controller = require('../server/controllers/controller.js');
+const makeLocal = require('../server/models/makeLocal.js');
 
 
-describe('controllerTest', () => {
+describe('makeLocalTest', () => {
   it('makeLocal', (done) => {
-    const name = controller.makeLocal('name');
+    const name = makeLocal.makeLocal('name');
 
     name.then((value) => {
       should.equal(value.name, 'name');

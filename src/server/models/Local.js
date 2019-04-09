@@ -14,8 +14,7 @@ module.exports = class Local {
   }
 
   requestCoords(name) {
-    //const key = process.env.API_KEY;
-    const key = '0be76b3fccbe4f768c99643d9f603e84'
+    const key = process.env.API_KEY;
     this.key = key;
 
     let data = '';

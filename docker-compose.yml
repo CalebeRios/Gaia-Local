@@ -4,6 +4,8 @@ services:
   app:
     image: caleberios/wendy_node:latest
     restart: always
+    environment:
+      - API_KEY=${API_KEY}
     volumes:
       - .:/app
       - /app/node_modules
@@ -14,12 +16,13 @@ services:
       - mongo
   
   mongo:
-    image: bitnami/mongodb:latest
-    ports: 
-      - 27018:27018
+    image: aashreys/mongo-auth:latest
     environment:
-      - MONGODB_ROOT_PASSWORD=password123
-    labels:
-      kompose.service.type: nodeport
-    volumes:
-      - .mongodb_data:/data/db
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=wendylocal
+      - MONGODB_ADMIN_PASS=admin123
+      - MONGODB_APPLICATION_DATABASE=wendylocal
+      - MONGODB_APPLICATION_USER=aashrey
+      - MONGODB_APPLICATION_PASS=admin123
+    ports: 
+      - 27017:27017

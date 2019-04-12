@@ -7,8 +7,8 @@ module.exports = {
     const local = new Local(input);
     console.log('shit1')
     request.requestCoords(local.name).then((value) => {
-      local.latitude = value.results[1].geometry.lat;
-      local.longitude = value.results[1].geometry.lng;
+      local.latitude = value.latitude;
+      local.longitude = value.longitude;
       resolve(local);
     });
   }),

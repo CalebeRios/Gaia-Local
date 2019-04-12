@@ -3,7 +3,7 @@ module.exports = {
     var mongoose = require('mongoose');
     mongoose.Promise = global.Promise;
     const options = {
-      user: 'aashrey',
+      user: 'wendylocal',
       pass: 'admin123',
       keepAlive: true,
       socketTimeoutMS: 540000,
@@ -15,7 +15,7 @@ module.exports = {
       bufferMaxEntries: 0,
       useNewUrlParser: true,
     };
-    mongoose.connect('mongodb://mongo:27017/sample', options).then(() => {
+    mongoose.connect('mongodb://mongo:27017/admin', options).then(() => {
       console.log('MongoDB is connected')
     }).catch(err => {
       console.log('MongoDB connection unsuccessful.')

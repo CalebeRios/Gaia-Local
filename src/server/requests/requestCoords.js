@@ -20,9 +20,8 @@ module.exports = {
     mongooseConnection.connect();
     return new Promise((resolve, reject) => {
       Location.findOne({ name: theName },
-        (err, local) => {
+        (err) => {
           if (err) reject(err);
-          console.log(local);
         })
         .then((local) => {
           if (local) {
@@ -39,10 +38,9 @@ module.exports = {
                   latitude: body.results[0].geometry.lat,
                   longitude: body.results[0].geometry.lng,
                 });
-                newLocal.save((err, aLocal) => {
+                newLocal.save((err) => {
                   if (err) {
                     reject(err);
-                    console.log(aLocal);
                   }
                 });
                 resolve(newLocal);

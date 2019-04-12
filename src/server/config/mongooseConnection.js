@@ -1,6 +1,7 @@
+const mongoose = require('mongoose');
+
 module.exports = {
-  connect: function () {
-    var mongoose = require('mongoose');
+  connect: () => {
     mongoose.Promise = global.Promise;
     const options = {
       user: 'wendylocal',
@@ -16,9 +17,6 @@ module.exports = {
       useNewUrlParser: true,
     };
     mongoose.connect('mongodb://mongo:27017/admin', options).then(() => {
-      console.log('MongoDB is connected')
-    }).catch(err => {
-      console.log('MongoDB connection unsuccessful.')
-    })
-  }
-}
+    }).catch();
+  },
+};

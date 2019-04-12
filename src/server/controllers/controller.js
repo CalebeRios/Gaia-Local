@@ -5,6 +5,7 @@ const makeLocal = require('../models/makeLocal.js');
 const router = express.Router();
 
 router.get('/local', (req, res) => {
+  console.log(req.query.address)
   makeLocal.makeLocal(req.query.address).then((value) => {
     res.json({
       lat: value.latitude,

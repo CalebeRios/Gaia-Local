@@ -10,9 +10,9 @@ const makeLocal = require('../server/models/makeLocal.js');
 
 describe('makeLocalTest', () => {
   it('makeLocal', (done) => {
-    const name = makeLocal.makeLocal('oregon');
+    const name = makeLocal.makeLocal('turquia');
     name.then((value) => {
-      should.equal(value.name, 'oregon');
+      should.equal(value.name, 'turquia');
       done();
     });
   });

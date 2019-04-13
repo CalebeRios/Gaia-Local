@@ -41,12 +41,12 @@ module.exports = {
                     latitude: body.results[0].geometry.lat,
                     longitude: body.results[0].geometry.lng,
                   });
+                  resolve(newLocal);
                   newLocal.save((err) => {
                     if (err) {
                       reject(err);
                     }
                   });
-                  resolve(newLocal);
                 } else {
                   reject(new Error('value is undefined'));
                 }

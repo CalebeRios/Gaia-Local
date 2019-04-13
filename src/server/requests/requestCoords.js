@@ -21,7 +21,9 @@ module.exports = {
     return new Promise((resolve, reject) => {
       Location.findOne({ name: theName },
         (err) => {
-          if (err) reject(err);
+          if (err) {
+            reject(err);
+          }
         })
         .then((local) => {
           if (local) {
@@ -33,17 +35,21 @@ module.exports = {
               });
               resp.on('end', () => {
                 body = JSON.parse(data);
-                const newLocal = new Location({
-                  name: theName,
-                  latitude: body.results[0].geometry.lat,
-                  longitude: body.results[0].geometry.lng,
-                });
-                newLocal.save((err) => {
-                  if (err) {
-                    reject(err);
-                  }
-                });
-                resolve(newLocal);
+                if (body.results[0]) {
+                  const newLocal = new Location({
+                    name: theName,
+                    latitude: body.results[0].geometry.lat,
+                    longitude: body.results[0].geometry.lng,
+                  });
+                  newLocal.save((err) => {
+                    if (err) {
+                      reject(err);
+                    }
+                  });
+                  resolve(newLocal);
+                } else {
+                  reject(new Error('value is undefined'));
+                }
               });
             }).on('error', (err) => {
               reject(err);

@@ -10,8 +10,8 @@ router.get('/local', (req, res) => {
       lat: value.latitude,
       lng: value.longitude,
     });
-  }).catch((err) => {
-    res.send(err);
+  }).catch(() => {
+    res.json({ results: 'errors' });
   });
 });
 module.exports = app => app.use('/', router);

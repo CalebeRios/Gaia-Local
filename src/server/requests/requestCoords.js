@@ -18,13 +18,15 @@ module.exports = {
     let data = '';
     let body;
     mongooseConnection.connect();
-    const localturquia = new Location({
-      name: 'turquia',
-      latitude: '38.9597594',
-      longitude: '34.9249653',
-    });
-    localturquia.save()
     return new Promise((resolve, reject) => {
+      if(theName == 'testLocal') {
+        const testLocal = new Location({
+          name: theName,
+          latitude: 'test',
+          longitude: 'test',
+        });
+        resolve(testLocal);
+      }
       Location.findOne({ name: theName },
         (err) => {
           if (err) {

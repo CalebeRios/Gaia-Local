@@ -11,7 +11,7 @@ router.get('/local', (req, res) => {
       lng: value.longitude,
     });
   }).catch(() => {
-    res.json({ results: 'errors' });
+    res.json({ "lat": "null", "lng": "null" });
   });
 });
 module.exports = app => app.use('/', router);

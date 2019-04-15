@@ -1,10 +1,10 @@
 const LocalSchema = require('../db/localSchema');
 const mongoose = require('mongoose');
+const LocalModel = mongoose.model('LocalModel', LocalSchema);
 
 module.exports = class Local {
   constructor(name) {
-    this.LocalModel = mongoose.model('LocalModel', LocalSchema);
-    this.local = new LocalModel({ 
+    this.local = new LocalModel({
       name: name,
       latitude: '',
       longitude: '',
@@ -36,14 +36,17 @@ module.exports = class Local {
   }
 
   findMe() {
-    LocalModel.findOne({ name: this.local.name }, (err) => {if (err) { return false; } }
-    ).then((local) => {
-      if(local){ 
-        this.local = local;
-        return true;   
-      }
+    return new Promise((resolve, reject) => {
+      LocalModel.findOne({ name: this.local.name }, (err) => { if (err) { resolve(false); } }
+      ).then((local) => {
+        if (local) {
+          this.local = local;
+          resolve(true);
+        }
 
-      return false;
-    });
+        resolve(false);
+      });
+
+    })
   }
 };

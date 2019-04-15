@@ -1,37 +1,44 @@
 const https = require('https');
 const Local = require('../models/Local');
+const key = process.env.API_KEY;
 
-function bodyToLocal(body, local){
-  local.setLatitude(body.results[0].geometry.lat);
-  local.setLongitude(body.results[0].geometry.lng);
+function bodyToLocal(body, local) {
+  try {
+    local.setLongitude(body.results[0].geometry.lng);
+    local.setLatitude(body.results[0].geometry.lat);
+  } catch (error) {
+    local.setLongitude('error');
+    local.setLatitude('error');
+  }
 }
 
 module.exports = {
   getCoords: (name) => {
     const local = new Local(name);
-    const key = process.env.API_KEY;
-    this.key = key;
-
     let data = '';
     let body;
-
-    if(local.findMe()) {
-      resolve(local);
-    } else {
-      return new Promise((resolve, reject) => {
-        https.get(`https://api.opencagedata.com/geocode/v1/json?q=${name}&key=${key}`, (resp) => {
-          resp.on('data', (chunk) => {
-            data += chunk;
+    return new Promise((resolve) => {
+      local.findMe().then((isFound) => {
+        if (isFound) {
+          console.log('bacno');
+          resolve(local);
+        } else {
+          https.get(`https://api.opencagedata.com/geocode/v1/json?q=${name}&key=${key}`, (resp) => {
+            resp.on('data', (chunk) => {
+              data += chunk;
+            });
+            resp.on('end', () => {
+              console.log('renqest');
+              body = JSON.parse(data);
+              bodyToLocal(body, local);
+              local.saveLocal().then(() => {
+                console.log('man');
+                resolve(local);
+              });
+            });
           });
-
-          resp.on('end', () => {
-            body = JSON.parse(data);
-            bodyToLocal(body, local);
-            local.saveLocal();
-            resolve(local);
-          });
-        });
+        }
       });
-    }
-  },
-};
+    });
+  }
+}

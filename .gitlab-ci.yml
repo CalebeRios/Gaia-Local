@@ -1,0 +1,24 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - quality
+
+buildLocal:
+  stage: build
+  script:
+    - docker-compose up --build
+
+testCheck:
+  stage: test
+  script:
+    - docker-compose run app /bin/sh -c "cd /app; npm i; npm run test"
+
+staticAnalysis:
+  stage: quality
+  script:
+    - docker-compose run app /bin/sh -c "cd /app; npm i; npm run lint"

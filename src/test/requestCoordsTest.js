@@ -16,7 +16,7 @@ describe('getLat', () => {
       should.equal(lat, '-10.3333333');
       done();
     });
-  });
+  }).timeout(5000);
 });
 
 describe('getLon', () => {
@@ -26,5 +26,5 @@ describe('getLon', () => {
       should.equal(lon, '-53.2');
       done();
     });
-  });
+  }).timeout(5000);
 });

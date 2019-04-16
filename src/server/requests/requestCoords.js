@@ -1,5 +1,6 @@
 const https = require('https');
 const Local = require('../models/Local');
+
 const key = process.env.API_KEY;
 
 function bodyToLocal(body, local) {
@@ -36,5 +37,5 @@ module.exports = {
         }
       });
     });
-  }
-}
+  },
+};

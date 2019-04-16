@@ -20,7 +20,6 @@ module.exports = {
     return new Promise((resolve) => {
       local.findMe().then((isFound) => {
         if (isFound) {
-          console.log('bacno');
           resolve(local);
         } else {
           https.get(`https://api.opencagedata.com/geocode/v1/json?q=${name}&key=${key}`, (resp) => {
@@ -28,13 +27,10 @@ module.exports = {
               data += chunk;
             });
             resp.on('end', () => {
-              console.log('renqest');
               body = JSON.parse(data);
               bodyToLocal(body, local);
-              local.saveLocal().then(() => {
-                console.log('man');
-                resolve(local);
-              });
+              local.saveLocal();
+              resolve(local);
             });
           });
         }

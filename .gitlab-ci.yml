@@ -12,17 +12,9 @@ stages:
   - test
   - quality
 
-buildLocal:
-  stage: build
-  script:
-    - docker-compose up --build
-
 testCheck:
   stage: test
   script:
     - docker-compose run app /bin/sh -c "cd /app; npm i; npm run test"
-
-staticAnalysis:
-  stage: quality
-  script:
-    - docker-compose run app /bin/sh -c "cd /app; npm i; npm run lint"
+  coverage:
+    '/Statements.*?(\d+(?:\.\d+)?)%/'

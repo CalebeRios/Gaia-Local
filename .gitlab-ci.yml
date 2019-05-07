@@ -11,4 +11,4 @@ testCheck:
     - npm install
     - npm test
   coverage:
-    '/Statements.*?(\d+(?:\.\d+)?)%/'
+    'All files[^|]*\|[^|]*\s+([\d\.]+)'

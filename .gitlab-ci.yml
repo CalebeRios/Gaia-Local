@@ -8,6 +8,7 @@ stages:
 testCheck:
   stage: test
   script:
+    - npm install
     - npm test
   coverage:
     '/Statements.*?(\d+(?:\.\d+)?)%/'

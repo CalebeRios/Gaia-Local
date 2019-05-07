@@ -10,5 +10,3 @@ testCheck:
   script:
     - npm install
     - npm test
-  coverage:
-    'All files[^|]*\|[^|]*\s+([\d\.]+)'

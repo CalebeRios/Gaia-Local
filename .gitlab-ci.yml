@@ -1,5 +1,9 @@
 image: node:latest
 
+before_script:
+  - apk add --no-cache py-pip python-dev libffi-dev openssl-dev gcc libc-dev make
+  - pip install docker-compose
+
 stages:
   - build
   - test
@@ -8,6 +12,5 @@ stages:
 testCheck:
   stage: test
   script:
-    - npm install
-    - npm test
+    - docker-compose run app /bin/sh -c "cd /app; npm i; npm run test"
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    image: caleberios/wendy_node:latest
+    image: caleberios/gaia-clima:homolog
     restart: always
     environment:
       - API_KEY=${API_KEY}

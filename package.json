@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --no-color --reporter=text-summary mocha src/test --exit",
+    "test": "nyc --reporter=text mocha src/test --exit",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "lint": "npx eslint ."
